@@ -1,0 +1,183 @@
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import axios from 'axios'
+import { useState } from "react";
+
+
+
+let baseUrl = ""
+if (window.location.href.split(":")[0] === "http") {
+  baseUrl = "http://localhost:5001";
+
+}
+
+
+function Signup() {
+  const [result, setResult] = useState("");
+
+  // const [firstname, setfirstname] = useState("");
+  // const [lastname, setlastname] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+
+
+
+  const myFormik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      Email: '',
+      Password: '',
+      confirmPassword: ''
+    },
+    validationSchema:
+      yup.object({
+        firstName: yup
+          .string('Enter your product name')
+          .required('first name is required')
+          .min(3, "please enter more then 3 characters ")
+          .max(10, "please enter within 20 characters "),
+
+        lastName: yup
+          .string('Enter your product name')
+          .required('last name is required')
+          .min(3, "please enter more then 3 characters ")
+          .max(10, "please enter within 20 characters "),
+
+        Email: yup
+          .string('Enter your email')
+          .email("enter valid email address")
+          .required('email is required'),
+
+        Password: yup
+          .string('Enter your password')
+          .required('password is required')
+          .min(6, "please enter more then 3 characters "),
+
+        confirmPassword: yup
+          .string('Enter your password again')
+          .required('confirm password is required')
+      }),
+    onSubmit: (values) => {
+      console.log("values: ", values);
+      myFormik.resetForm({ values: '' });
+
+
+
+      axios.post(`${baseUrl}/signup`, {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.Email,
+        password: values.Password
+      })
+        .then(response => {
+          console.log("response: ", response.data);
+
+        })
+        .catch(err => {
+          console.log("error: ", err);
+        })
+
+
+    },
+  });
+
+
+  return (
+    <>
+      <div className='container'>
+        <div class="header">
+          <h1 class="heading">Sign Up</h1>
+        </div>
+        <form className='inputf' onSubmit={myFormik.handleSubmit}>
+          <input
+            id="firstName"
+            placeholder="First Name"
+            value={myFormik.values.firstName}
+            onChange={myFormik.handleChange}
+          />
+          {
+            (myFormik.touched.firstName && Boolean(myFormik.errors.firstName)) ?
+              <span style={{ color: "red" }}>{myFormik.errors.firstName}</span>
+              :
+              null
+          }
+          <br />
+          <input
+            id="lastName"
+            placeholder="Last Name"
+            value={myFormik.values.lastName}
+            onChange={myFormik.handleChange}
+          />
+          {
+            (myFormik.touched.lastName && Boolean(myFormik.errors.lastName)) ?
+              <span style={{ color: "red" }}>{myFormik.errors.lastName}</span>
+              :
+              null
+          }
+
+          <br />
+          <input
+            id="Email"
+            placeholder="Email Address"
+            value={myFormik.values.Email}
+            onChange={myFormik.handleChange}
+          />
+          {
+            (myFormik.touched.Email && Boolean(myFormik.errors.Email)) ?
+              <span style={{ color: "red" }}>{myFormik.errors.Email}</span>
+              :
+              null
+          }
+
+          <br />
+          <input
+            id="Password"
+            placeholder="Password"
+            value={myFormik.values.Password}
+            onChange={myFormik.handleChange}
+          />
+          {
+            (myFormik.touched.Password && Boolean(myFormik.errors.Password)) ?
+              <span style={{ color: "red" }}>{myFormik.errors.Password}</span>
+              :
+              null
+          }
+          <br />
+          <input
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            value={myFormik.values.confirmPassword}
+            onChange={myFormik.handleChange}
+          />
+          {
+            (myFormik.touched.confirmPassword && Boolean(myFormik.errors.confirmPassword)) ?
+              <span style={{ color: "red" }}>{myFormik.errors.confirmPassword}</span>
+              :
+              null
+          }
+
+          <br />
+          <div className="button">
+            <button type="submit"> Submit </button>
+          </div>
+
+        </form>
+
+        <br />
+        <br />
+
+      </div>
+
+
+      <p>{result}</p>
+
+
+
+    </>
+
+  );
+}
+
+export default Signup;
