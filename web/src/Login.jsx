@@ -1,11 +1,27 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import Product from './Product';
+import { useState } from 'react';
 
 
-function Signup() {
+let baseUrl = ""
+if (window.location.href.split(":")[0] === "http") {
+  baseUrl = "http://localhost:5001";
+
+}
 
 
+function Login() {
+  // const navi=useNavigate();
+  const [passwordShown, setPasswordShown] = useState(false);
 
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
 
   const myFormik = useFormik({
     initialValues: {
@@ -29,6 +45,20 @@ function Signup() {
       console.log("values: ", values);
       myFormik.resetForm({ values: '' });
 
+      axios.post(`${baseUrl}/login`, {
+        email: values.Email,
+        password: values.Password
+      })
+        .then(response => {
+          console.log("response: ", response.data);
+          // navi("/Product");
+          
+
+        })
+        .catch(err => {
+          console.log("error: ", err);
+        })
+
 
     },
   });
@@ -40,8 +70,8 @@ function Signup() {
   return (
     <>
       <div className='container'>
-        <div class="header">
-          <h1 class="heading">Login</h1>
+        <div className="header">
+          <h1 className="heading">Login</h1>
         </div>
         <form className='inputf' onSubmit={myFormik.handleSubmit}>
           <input
@@ -61,15 +91,18 @@ function Signup() {
           <input
             id="Password"
             placeholder="Password"
+            type={passwordShown ? "text" : "password"}
             value={myFormik.values.Password}
             onChange={myFormik.handleChange}
           />
           {
             (myFormik.touched.Password && Boolean(myFormik.errors.Password)) ?
-              <span style={{ color: "red" }}>{myFormik.errors.Password}</span>
-              :
-              null
+            <span style={{ color: "red" }}>{myFormik.errors.Password}</span>
+            :
+            null
           }
+          <br />
+          <button className='myeye' onClick={togglePassword}>show password</button>
 
           <br />
           <div className="button">
@@ -91,4 +124,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;

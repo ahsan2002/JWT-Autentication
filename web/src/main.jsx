@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from './Navbar';
 import Login from './Login';
 import Signup from './Signup';
+import Product from './Product';
 
 const Main = () => {
 
@@ -16,6 +17,7 @@ const Main = () => {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/product" element={<Product />} />
             </Routes>
 
 

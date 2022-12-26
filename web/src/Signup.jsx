@@ -14,13 +14,13 @@ if (window.location.href.split(":")[0] === "http") {
 
 function Signup() {
   const [result, setResult] = useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
 
-  // const [firstname, setfirstname] = useState("");
-  // const [lastname, setlastname] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
 
 
   const myFormik = useFormik({
@@ -57,7 +57,8 @@ function Signup() {
 
         confirmPassword: yup
           .string('Enter your password again')
-          .required('confirm password is required')
+          .required("Please re-enter your password")
+          .oneOf([yup.ref("Password")], "Passwords do not match")
       }),
     onSubmit: (values) => {
       console.log("values: ", values);
@@ -87,8 +88,8 @@ function Signup() {
   return (
     <>
       <div className='container'>
-        <div class="header">
-          <h1 class="heading">Sign Up</h1>
+        <div className="header">
+          <h1 className="heading">SignUp</h1>
         </div>
         <form className='inputf' onSubmit={myFormik.handleSubmit}>
           <input
@@ -135,6 +136,7 @@ function Signup() {
           <input
             id="Password"
             placeholder="Password"
+            type={passwordShown ? "text" : "password"}
             value={myFormik.values.Password}
             onChange={myFormik.handleChange}
           />
@@ -145,9 +147,12 @@ function Signup() {
               null
           }
           <br />
+          <button className='myeye' onClick={togglePassword}>show password</button>
+          <br />
           <input
             id="confirmPassword"
             placeholder="Confirm Password"
+            type={passwordShown ? "text" : "password"}
             value={myFormik.values.confirmPassword}
             onChange={myFormik.handleChange}
           />
@@ -157,7 +162,6 @@ function Signup() {
               :
               null
           }
-
           <br />
           <div className="button">
             <button type="submit"> Submit </button>

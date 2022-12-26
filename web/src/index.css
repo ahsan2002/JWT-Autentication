@@ -10,7 +10,7 @@ body{
 .container{
   margin: 0 auto;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px;
   color: white;
   width: 300px;
 }
@@ -18,6 +18,8 @@ body{
 .heading{
   margin-bottom: 20px;
   font-family: 'Open Sans', sans-serif;
+  color: black;
+  font-weight: bold;
 }
 
 .inputf{
@@ -77,10 +79,45 @@ body{
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: rgb(33 134 212);
   border-radius: 20px;
   font-weight: bold;
   padding: 15px;
   cursor: pointer;
   user-select: none;
+  margin-top: 20px;
 }
+
+
+.my{
+  background-color: #fefefe;
+    margin: 0% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+td {
+  border:1px solid black;
+  background-color: lightblue;
+}
+
+tr{
+  text-align: center;
+}
+
+th{
+  border:1px solid black;
+  background-color: rgb(12, 173, 227);
+}
+table{
+  margin-top:20px;
+  text-align: center;
+  border:2px solid black;
+  width: 100%;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
