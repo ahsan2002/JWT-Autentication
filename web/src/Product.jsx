@@ -20,7 +20,7 @@ function Product() {
 
   const getAllProducts = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/products`)
+      const response = await axios.get(`${baseUrl}/api/v1/products`)
       console.log("response: ", response.data);
 
       setProducts(response.data.data)
@@ -32,7 +32,7 @@ function Product() {
 
   const deleteProduct = async (id) => {
     try {
-      const response = await axios.delete(`${baseUrl}/product/${id}`)
+      const response = await axios.delete(`${baseUrl}/api/v1/product/${id}`)
       console.log("response: ", response.data);
 
       setLoadProduct(!loadProduct)
@@ -135,7 +135,7 @@ function Product() {
       console.log("values: ", values);
       setupdate(false);
 
-      axios.put(`${baseUrl}/product/${editingProduct._id}`, {
+      axios.put(`${baseUrl}/api/v1/product/${editingProduct._id}`, {
         name: values.productName,
         price: values.productPrice,
         description: values.productDescription,

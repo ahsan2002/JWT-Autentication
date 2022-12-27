@@ -3,7 +3,8 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Product from './Product';
-import { useState } from 'react';
+import { useState,useContext } from 'react';
+import { GlobalContext } from './context/Context';
 
 
 let baseUrl = ""
@@ -16,6 +17,7 @@ if (window.location.href.split(":")[0] === "http") {
 function Login() {
   // const navi=useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
+  let { state, dispatch } = useContext(GlobalContext);
 
   const togglePassword = () => {
     // When the handler is invoked
@@ -52,9 +54,11 @@ function Login() {
         .then(response => {
           console.log("response: ", response.data);
           // navi("/Product");
-          
-
         })
+        dispatch({
+          type: 'USER_LOGIN',
+          payload: null
+      })
         .catch(err => {
           console.log("error: ", err);
         })
