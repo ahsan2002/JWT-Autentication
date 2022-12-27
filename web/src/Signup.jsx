@@ -66,7 +66,7 @@ function Signup() {
 
 
 
-      axios.post(`${baseUrl}/signup`, {
+      axios.post(`${baseUrl}/api/v1/signup`, {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.Email,
@@ -147,7 +147,7 @@ function Signup() {
               null
           }
           <br />
-          <button className='myeye' onClick={togglePassword}>show password</button>
+          <button className='myeye' type='button' onClick={togglePassword}>show password</button>
           <br />
           <input
             id="confirmPassword"

@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://excited-gold-robe.cyclic.app/',"*"],
+    origin: ['http://localhost:3000',"*"],
     credentials: true
 }));
 
@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
 });
 const userModel = mongoose.model('Users', userSchema);
 
-app.post("/signup", (req, res) => {
+app.post("/api/v1/signup", (req, res) => {
 
     let body = req.body;
 
@@ -113,7 +113,7 @@ app.post("/signup", (req, res) => {
     })
 });
 
-app.post("/login", (req, res) => {
+app.post("/api/v1/login", (req, res) => {
 
     let body = req.body;
     body.email = body.email.toLowerCase();
@@ -190,7 +190,7 @@ app.post("/login", (req, res) => {
 })
 
 
-app.post("/logout", (req, res) => {
+app.post("/api/v1/logout", (req, res) => {
 
     res.cookie('Token', '', {
         maxAge: 1,
@@ -201,7 +201,7 @@ app.post("/logout", (req, res) => {
 })
 
 
-app.use((req, res, next) => {
+app.use('/api/v1',(req, res, next) => {
 
     console.log("req.cookies: ", req.cookies);
 
@@ -244,7 +244,7 @@ app.use((req, res, next) => {
 
 
 //other API
-app.post('/product', (req, res) => {
+app.post('/api/v1/product', (req, res) => {
 
     const body = req.body;
 
@@ -292,7 +292,7 @@ app.post('/product', (req, res) => {
 
 })
 
-app.get('/products', (req, res) => {
+app.get('/api/v1/products', (req, res) => {
     productModel.find({}, (err, data) => {
         if (!err) {
             res.send({
@@ -307,7 +307,7 @@ app.get('/products', (req, res) => {
     });
 })
 
-app.get('/product/:id', (req, res) => {
+app.get('/api/v1/product/:id', (req, res) => {
 
     const id = req.params.id;
 
@@ -354,7 +354,7 @@ app.get('/product/:id', (req, res) => {
 
 })
 
-app.delete('/product/:id', (req, res) => {
+app.delete('/api/v1/product/:id', (req, res) => {
     const id = req.params.id;
 
     // let isFound = false;
@@ -402,7 +402,7 @@ app.delete('/product/:id', (req, res) => {
 
 })
 
-app.put('/product/:id', async (req, res) => {
+app.put('/api/v1/product/:id', async (req, res) => {
 
     const body = req.body;
     const id = req.params.id;

@@ -45,7 +45,7 @@ function Login() {
       console.log("values: ", values);
       myFormik.resetForm({ values: '' });
 
-      axios.post(`${baseUrl}/login`, {
+      axios.post(`${baseUrl}/api/v1/login`, {
         email: values.Email,
         password: values.Password
       })
@@ -102,7 +102,7 @@ function Login() {
             null
           }
           <br />
-          <button className='myeye' onClick={togglePassword}>show password</button>
+          <button className='myeye' type='button' onClick={togglePassword}>show password</button>
 
           <br />
           <div className="button">
