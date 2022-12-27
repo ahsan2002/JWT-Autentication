@@ -89,7 +89,7 @@ function Product() {
       console.log("values: ", values);
       myFormik.resetForm({ values: '' });
 
-      axios.post(`${baseUrl}/product`, {
+      axios.post(`${baseUrl}/api/v1/product`, {
         name: values.productName,
         price: values.productPrice,
         description: values.productDescription,
