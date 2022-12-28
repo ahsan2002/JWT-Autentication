@@ -121,3 +121,12 @@ table{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.btn{
+  float: right;
+}
+
+.btn button{
+  margin-right: 5px;
+  padding: 5px;
+  
+}

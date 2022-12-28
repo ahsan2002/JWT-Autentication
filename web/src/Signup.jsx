@@ -2,7 +2,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios'
 import { useState } from "react";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 let baseUrl = ""
@@ -74,10 +75,12 @@ function Signup() {
       })
         .then(response => {
           console.log("response: ", response.data);
+          toast(`${response.data.message}`);
 
         })
         .catch(err => {
           console.log("error: ", err);
+          toast(`${err.response.data.message}`);
         })
 
 
@@ -87,6 +90,7 @@ function Signup() {
 
   return (
     <>
+    <ToastContainer />
       <div className='container'>
         <div className="header">
           <h1 className="heading">SignUp</h1>

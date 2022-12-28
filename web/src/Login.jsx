@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Product from './Product';
 import { useState,useContext } from 'react';
 import { GlobalContext } from './context/Context';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 let baseUrl = ""
@@ -54,13 +56,18 @@ function Login() {
         .then(response => {
           console.log("response: ", response.data);
           // navi("/Product");
+          toast(`${response.data.message}`);
+          setTimeout(() => {
+            dispatch({
+              type: 'USER_LOGIN',
+              payload: null
+            }) 
+          }, 3000);
         })
-        dispatch({
-          type: 'USER_LOGIN',
-          payload: null
-      })
+
         .catch(err => {
           console.log("error: ", err);
+          toast(`${err.response.data.message}`);
         })
 
 
@@ -73,6 +80,7 @@ function Login() {
 
   return (
     <>
+    <ToastContainer />
       <div className='container'>
         <div className="header">
           <h1 className="heading">Login</h1>

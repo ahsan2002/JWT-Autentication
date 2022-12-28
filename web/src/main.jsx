@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useContext,useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import axios from 'axios';
 import Navbar from './Navbar';
@@ -58,7 +58,6 @@ const Main = () => {
 
     return (
         <>
-
             {
                 (state.isLogin === true) ?
                     <Mynavbar />
@@ -100,7 +99,7 @@ const Main = () => {
             {(state.isLogin === null) ?
 
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh' }}>
-                    <h1>Loading........</h1>
+                    <h1>Loading..........</h1>
                 </div>
 
                 : null}
