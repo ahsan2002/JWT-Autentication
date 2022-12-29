@@ -9,11 +9,7 @@ import {
     varifyHash,
 } from "bcrypt-inzi"
 
-
-
 const SECRET = process.env.SECRET || "topsecret";
-
-
 
 const app = express()
 const port = process.env.PORT || 5001;
