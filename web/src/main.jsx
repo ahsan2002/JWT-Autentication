@@ -87,7 +87,7 @@ const Main = () => {
                 (state.isLogin === false) ?
 
                     <Routes>
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         {/* <Route path="/product" element={<Product />} /> */}
                     </Routes>

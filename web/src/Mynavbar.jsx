@@ -44,9 +44,11 @@ const Mynavbar = () => {
     <NavLink  style={linkStyle}to='/about'>About</NavLink>
     <NavLink  style={linkStyle}to='/product'>Products</NavLink>
     </div>
+
     <div className="btn">
       <button onClick={logout}>Log out</button>
     </div>
+
     </>
   )
 }

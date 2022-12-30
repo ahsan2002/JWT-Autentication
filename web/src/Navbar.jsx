@@ -14,7 +14,7 @@ const Navbar = () => {
     <>
     <div className="tab">
     <NavLink  style={linkStyle} to='/signup'>SignUp</NavLink>
-    <NavLink  style={linkStyle}to='/login'>Log in</NavLink>
+    <NavLink  style={linkStyle}to='/'>Log in</NavLink>
     </div>
     </>
   )

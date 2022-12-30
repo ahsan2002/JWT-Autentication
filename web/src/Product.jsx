@@ -2,6 +2,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from "axios";
 import { useEffect, useState } from 'react';
+import DeleteSharpIcon from '@mui/icons-material/DeleteSharp';
+import EditSharpIcon from '@mui/icons-material/EditSharp';
 
 let baseUrl = ""
 if (window.location.href.split(":")[0] === "http") {
@@ -235,11 +237,15 @@ function Product() {
               }}>
                 <button onClick={() => {
                   deleteProduct(eachProduct._id)
-                }}>delete</button>
+                }}>
+                  <DeleteSharpIcon style={{color:"red"}}/>
+                </button>
 
                 <button onClick={() => {
                   editMode(eachProduct)
-                }}>edit</button>
+                }}>
+                  <EditSharpIcon style={{color:"green"}}/>
+                </button>
               </td>
 
               {(isEditMode && editingProduct._id === eachProduct._id && update === true) ?
