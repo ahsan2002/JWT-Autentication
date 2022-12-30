@@ -157,9 +157,6 @@ router.delete('/product/:id', (req, res) => {
         }
     });
 
-
-
-
 })
 
 router.put('/product/:id', async (req, res) => {
