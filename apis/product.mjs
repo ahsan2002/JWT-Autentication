@@ -236,7 +236,5 @@ router.put('/product/:id', async (req, res) => {
         })
     }
 
-
 })
-
 export default router
