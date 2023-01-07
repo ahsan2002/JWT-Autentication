@@ -60,7 +60,7 @@ function Login() {
           setTimeout(() => {
             dispatch({
               type: 'USER_LOGIN',
-              payload: null
+              payload: response.data.profile
             }) 
           }, 3000);
         })

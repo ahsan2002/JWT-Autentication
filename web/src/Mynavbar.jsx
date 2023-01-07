@@ -43,6 +43,9 @@ const Mynavbar = () => {
     <NavLink  style={linkStyle} to='/home'>Home</NavLink>
     <NavLink  style={linkStyle}to='/about'>About</NavLink>
     <NavLink  style={linkStyle}to='/product'>Products</NavLink>
+    <NavLink  style={linkStyle}to='/profile'>Profile</NavLink>
+    {/* <NavLink  to=''></NavLink> */}
+    {/* <li style={linkStyle}>{state?.user?.firstName} {state?.user?.lastName}</li> */}
     </div>
 
     <div className="btn">
