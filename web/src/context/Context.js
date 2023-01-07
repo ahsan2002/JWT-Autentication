@@ -8,7 +8,6 @@ let data = {
   user: {},
   isLogin: null,
 }
-
 export default function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, data)
   return (

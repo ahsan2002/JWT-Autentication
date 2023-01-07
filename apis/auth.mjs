@@ -8,9 +8,7 @@ import { userModel, productModel } from './../dbRepo/models.mjs'
 
 const SECRET = process.env.SECRET || "topsecret";
 
-
 const router = express.Router()
-
 
 router.post("/signup", (req, res) => {
 
