@@ -106,7 +106,6 @@ const getUser = async (req, res) => {
     }
 }
 
-
 app.get('/api/v1/profile', getUser)
 app.get('/api/v1/profile/:id', getUser)
 
@@ -118,4 +117,3 @@ app.use('*', express.static(path.join(__dirname, './web/build')))
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
-
